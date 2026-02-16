@@ -4,8 +4,8 @@ Detect chess pawn structures and attributes (including central majorities / pawn
 
 ## Architecture
 
-- **JSON definitions** (`data/structures.json`) describe named structures: required/forbidden pawn squares per color and **regions** (e.g. center) with count constraints (e.g. white ≥ 2, black ≤ 1 for a center majority).
-- **Compiler** (`src/compiler.ts`) turns these definitions into a compiled form (bitboard masks) using `bitboard-chess`.
+- **JSON definitions** (`data/structures.json`) describe named structures per color: **requiredSquares** (a pawn of that color must be on each square), **forbiddenSquares** (no pawn of that color on those squares), and **requiredRegions** / **forbiddenRegions** (zones with `min`/`max` pawn counts, e.g. `min: 0, max: 0` = no pawns in that zone).
+- **Compiler** (`src/compiler.ts`) turns these definitions into a compiled form (bitboard masks and zone constraints) using `bitboard-chess`.
 - **Matcher**: `detectStructures(position)` uses the **native addon** (`native/matcher.cpp` + N-API binding) when built; otherwise it falls back to the **JavaScript matcher** (`src/matcher-js.ts`) with the same semantics.
 
 ## Building the native addon
@@ -19,34 +19,30 @@ npm run build
 
 The addon is written to `build/Release/chess-structure-detection.node`. If it is missing, the package uses the JavaScript matcher automatically.
 
-## JSON Format of Chess structures
-```JSON
+## JSON format
+
+Each structure has **colorFlip** (whether the structure can be matched with colors reversed) and **white** / **black** objects. Each color may define:
+
+- **requiredSquares** – A pawn of that color must exist on each of these squares (e.g. `["d4", "c4"]`).
+- **forbiddenSquares** – No pawn of that color may be on any of these squares.
+- **requiredRegions** – List of zones where pawn count must lie between `min` and `max` (inclusive). E.g. exactly one pawn in the c-file on ranks 2–4: `{ "files": ["c"], "ranks": [2,3,4], "min": 1, "max": 1 }`.
+- **forbiddenRegions** – Same shape; typically `min: 0, max: 0` to forbid pawns in a zone. E.g. no pawns on the e-file from ranks 2–7: `{ "files": ["e"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }`.
+
+All fields are optional; omit or use empty arrays/objects as needed.
+
+```json
 {
-  "Slav": {
-    "allowColorFlip": true,
-
-    "squares": {
-      "white": {
-        "required": ["d4", "c4"],
-        "forbidden": [],
-        "optional": []
-      },
-      "black": {
-        "required": ["c6", "e6"],
-        "forbidden": ["d7", "d6"],
-        "optional": []
-      }
+  "Slav Formation": {
+    "colorFlip": true,
+    "white": {
+      "requiredSquares": ["d4"],
+      "forbiddenRegions": [
+        { "files": ["c"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+      ]
     },
-
-    "regions": [
-      {
-        "name": "centerMajority",
-        "files": ["c", "d", "e"],
-        "ranks": [3, 4, 5],
-        "whiteCount": { "op": ">=", "value": 2 },
-        "blackCount": { "op": "<=", "value": 1 }
-      }
-    ]
+    "black": {
+      "requiredSquares": ["d5", "c6"]
+    }
   }
 }
 ```

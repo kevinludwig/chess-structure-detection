@@ -12,12 +12,14 @@ export function matchStructureJS(
   if (whitePawns & s.whiteForbidden) return false;
   if (blackPawns & s.blackForbidden) return false;
 
-  for (const r of s.regions) {
-    const w = popcount(whitePawns & r.mask);
-    const b = popcount(blackPawns & r.mask);
+  for (const z of s.whiteRegions) {
+    const count = popcount(whitePawns & z.mask);
+    if (count < z.min || count > z.max) return false;
+  }
 
-    if (r.whiteOp && !evalOp(w, r.whiteOp, r.whiteValue!)) return false;
-    if (r.blackOp && !evalOp(b, r.blackOp, r.blackValue!)) return false;
+  for (const z of s.blackRegions) {
+    const count = popcount(blackPawns & z.mask);
+    if (count < z.min || count > z.max) return false;
   }
 
   return true;
@@ -25,16 +27,4 @@ export function matchStructureJS(
 
 function popcount(bb: bigint): number {
   return bb.toString(2).split("1").length - 1;
-}
-
-function evalOp(a: number, op: string, b: number): boolean {
-  switch (op) {
-    case "==": return a === b;
-    case "!=": return a !== b;
-    case ">": return a > b;
-    case ">=": return a >= b;
-    case "<": return a < b;
-    case "<=": return a <= b;
-  }
-  return false;
 }

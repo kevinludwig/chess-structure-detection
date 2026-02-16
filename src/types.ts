@@ -1,55 +1,47 @@
 // JSON schema (authoring format)
-export interface StructureDefinition {
-  allowColorFlip: boolean;
 
-  squares: {
-    white: {
-      required: string[];
-      forbidden: string[];
-      optional: string[];
-    };
-    black: {
-      required: string[];
-      forbidden: string[];
-      optional: string[];
-    };
-  };
-
-  regions: RegionDefinition[];
-}
-
-export interface RegionDefinition {
-  name: string;
+export interface RegionDef {
   files: string[];
   ranks: number[];
-  whiteCount?: CountConstraint;
-  blackCount?: CountConstraint;
+  min: number;
+  max: number;
 }
 
-export interface CountConstraint {
-  op: "==" | "!=" | ">" | ">=" | "<" | "<=";
-  value: number;
+export interface ColorDef {
+  requiredSquares?: string[];
+  forbiddenSquares?: string[];
+  requiredRegions?: RegionDef[];
+  forbiddenRegions?: RegionDef[];
 }
 
-// Compiled form (what C++ receives)
+export interface StructureDefinition {
+  colorFlip: boolean;
+  white: ColorDef;
+  black: ColorDef;
+}
+
+// Compiled form (bitmasks + region constraints for matching)
+
+export interface CompiledZone {
+  mask: bigint;
+  min: number;
+  max: number;
+}
+
 export interface CompiledStructure {
   name: string;
-  allowColorFlip: boolean;
+  colorFlip: boolean;
 
   whiteRequired: bigint;
   whiteForbidden: bigint;
   blackRequired: bigint;
   blackForbidden: bigint;
 
-  regions: CompiledRegion[];
+  whiteRegions: CompiledZone[];
+  blackRegions: CompiledZone[];
 }
 
-export interface CompiledRegion {
-  mask: bigint;
-  whiteOp?: string;
-  whiteValue?: number;
-  blackOp?: string;
-  blackValue?: number;
+export interface PositionSnapshot {
+  whitePawns: bigint;
+  blackPawns: bigint;
 }
-
-export interface PositionSnapshot { whitePawns: bigint; blackPawns: bigint; }

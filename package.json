@@ -4,7 +4,8 @@
   "description": "Detect chess pawn structures and attributes given a bitboard representation.",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js",
+    "test": "node --import tsx --test \"test/**/*.test.js\"",
+    "test:coverage": "c8 node --import tsx --test \"test/**/*.test.js\"",
     "build": "node-gyp configure build",
     "rebuild": "node-gyp rebuild",
     "clean": "node-gyp clean"
@@ -14,8 +15,14 @@
     "bitboard-chess": "^0.3.0"
   },
   "devDependencies": {
-    "node-addon-api": "^8.0.0"
+    "c8": "^10.1.2",
+    "node-addon-api": "^8.0.0",
+    "tsx": "^4.19.0"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "c8": {
+    "include": ["src/**/*.ts"],
+    "exclude": ["test/**", "native/**", "**/*.test.js"]
+  }
 }

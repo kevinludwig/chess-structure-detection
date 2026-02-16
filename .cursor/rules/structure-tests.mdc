@@ -1,0 +1,48 @@
+---
+description: How to write structure-detection tests (per half-move, pass/fail, negative tests)
+globs: test/**/*.test.js
+alwaysApply: false
+---
+
+# Structure detection tests
+
+When adding or editing tests for pawn structures in `test/`:
+
+## How every structure test must work
+
+1. **Check on every half-move**  
+   After each move in the sequence, get the current position and run `detectStructures(position)`. Do not only check at the end.
+
+2. **Positive tests (default)**  
+   - **Pass**: If at any point in the sequence the target structure appears in `detectStructures(position)`, the test passes immediately.  
+   - **Fail**: If the sequence finishes and the target structure was never matched, the test fails.
+
+3. **Negative tests**  
+   When the user says something like "this is a negative test" (or that the sequence must never reach the structure):  
+   - **Pass**: If the sequence finishes and the target structure was never matched.  
+   - **Fail**: If at any point the target structure is matched.
+
+## Implementation
+
+- Use the helper `playSequenceAndAssertStructure(Chess, movesSan, detectStructures, structureName)` from `test/helpers.js` for positive tests.
+- For negative tests use the same helper with `playSequenceAndAssertStructure(Chess, movesSan, detectStructures, structureName, { negative: true })`.
+- Move sequences are an array of SAN moves in game order (e.g. `['d4', 'f5', 'g3', 'Nf6', ...]`).
+- One test file per structure; add one or more `it(...)` tests per move sequence the user provides.
+
+## Example (positive)
+
+```js
+it('reaches Stonewall structure after the given move sequence', () => {
+  const moves = ['d4', 'f5', 'g3', 'Nf6', 'Bg2', 'e6', 'Nf3', 'c6', 'O-O', 'd5', 'Qc2', 'Bd6', 'Nbd2', 'O-O', 'b3', 'a5', 'Bb2', 'Na6'];
+  playSequenceAndAssertStructure(Chess, moves, detectStructures, 'Stonewall');
+});
+```
+
+## Example (negative)
+
+```js
+it('does not reach Stonewall in this line', () => {
+  const moves = ['e4', 'e5', 'Nf3', 'Nc6'];
+  playSequenceAndAssertStructure(Chess, moves, detectStructures, 'Stonewall', { negative: true });
+});
+```

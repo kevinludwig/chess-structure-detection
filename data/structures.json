@@ -1,1 +1,299 @@
-{}
+{
+    "IQP": {
+      "colorFlip": true,
+      "white": {
+        "requiredSquares": ["d4"],
+        "forbiddenSquares": ["c2","c3","c4","e2","e3","e4"]
+      },
+      "black": {
+        "forbiddenSquares": ["d5"]
+      }
+    },
+  
+    "Hanging Pawns (c-d)": {
+      "colorFlip": true,
+      "white": {
+        "requiredRegions": [
+          { "files": ["c"], "ranks": [2,3,4], "min": 1, "max": 1 },
+          { "files": ["d"], "ranks": [2,3,4], "min": 1, "max": 1 }
+        ],
+        "forbiddenRegions": [
+          { "files": ["b"], "ranks": [2,3,4], "min": 0, "max": 0 },
+          { "files": ["e"], "ranks": [2,3,4], "min": 0, "max": 0 }
+        ]
+      },
+      "black": {}
+    },
+  
+    "Hanging Pawns (d-e)": {
+      "colorFlip": true,
+      "white": {
+        "requiredRegions": [
+          { "files": ["d"], "ranks": [2,3,4], "min": 1, "max": 1 },
+          { "files": ["e"], "ranks": [2,3,4], "min": 1, "max": 1 }
+        ],
+        "forbiddenRegions": [
+          { "files": ["c"], "ranks": [2,3,4], "min": 0, "max": 0 },
+          { "files": ["f"], "ranks": [2,3,4], "min": 0, "max": 0 }
+        ]
+      },
+      "black": {}
+    },
+  
+    "Maroczy Bind": {
+      "colorFlip": true,
+      "white": {
+        "requiredSquares": ["c4","e4"]
+      },
+      "black": {
+        "requiredSquares": ["d6"],
+        "forbiddenSquares": ["c5"]
+      }
+    },
+  
+    "Slav Formation": {
+      "colorFlip": true,
+      "white": {
+        "requiredSquares": ["d4"],
+        "forbiddenRegions": [
+          { "files": ["c"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
+      },
+      "black": {
+        "requiredSquares": ["d5","c6"]
+      }
+    },
+  
+    "Stonewall": {
+      "colorFlip": true,
+      "white": {
+        "requiredSquares": ["c3","d4","e3","f4"]
+      },
+      "black": {}
+    },
+  
+    "Caro-Kann Formation": {
+      "colorFlip": true,
+      "white": {
+        "requiredSquares": ["c3","d4"]
+      },
+      "black": {
+        "requiredSquares": ["c6","d5"]
+      }
+    },
+  
+    "Carlsbad": {
+      "colorFlip": true,
+      "white": {
+        "requiredSquares": ["c4","d4"],
+        "forbiddenRegions": [
+          { "files": ["e"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
+      },
+      "black": {
+        "requiredSquares": ["d5","c6"]
+      }
+    },
+  
+    "Grunfeld Exchange Center": {
+      "colorFlip": false,
+      "white": {
+        "requiredSquares": ["c3","d4"],
+        "forbiddenRegions": [
+          { "files": ["b"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
+      },
+      "black": {
+        "forbiddenRegions": [
+          { "files": ["d"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
+      }
+    },
+  
+    "Najdorf Type 1": {
+      "colorFlip": false,
+      "white": {
+        "requiredSquares": ["a2","b2","c2","d5","f2","g2","h2"]
+      },
+      "black": {
+        "requiredSquares": ["a7","b7","d6","e5","f7","g7","h7"],
+        "forbiddenRegions": [
+          { "files": ["c"], "ranks": [5,6,7], "min": 0, "max": 0 }
+        ]
+      }
+    },
+  
+    "Najdorf Type 2": {
+      "colorFlip": false,
+      "white": {
+        "requiredSquares": ["a2","b2","c2","e4","f2","g2","h2"]
+      },
+      "black": {
+        "requiredSquares": ["a7","b7","d6","e5","f7","g7","h7"],
+        "forbiddenRegions": [
+          { "files": ["c"], "ranks": [5,6,7], "min": 0, "max": 0 }
+        ]
+      }
+    },
+  
+    "Hedgehog": {
+      "colorFlip": false,
+      "white": {
+        "requiredSquares": ["c4","d4","e4"]
+      },
+      "black": {
+        "requiredSquares": ["a6","b6","c5","d6","e6"]
+      }
+    },
+  
+    "Asymmetric Benoni": {
+      "colorFlip": false,
+      "white": {
+        "requiredSquares": ["d5","e4"],
+        "forbiddenSquares": ["c4"]
+      },
+      "black": {
+        "requiredSquares": ["c5","d6"]
+      }
+    },
+  
+    "Symmetric Benoni": {
+      "colorFlip": false,
+      "white": {
+        "requiredSquares": ["c4","d5"],
+        "forbiddenRegions": [
+          { "files": ["e"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
+      },
+      "black": {
+        "requiredSquares": ["c5","d6"]
+      }
+    },
+  
+    "KID Type 1": {
+      "colorFlip": false,
+      "white": {
+        "requiredSquares": ["d5","e4"],
+        "forbiddenRegions": [
+          { "files": ["c"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
+      },
+      "black": {
+        "requiredSquares": ["d6","e5"]
+      }
+    },
+  
+    "KID Type 2": {
+      "colorFlip": false,
+      "white": {
+        "requiredSquares": ["c4","d5","e4"]
+      },
+      "black": {
+        "requiredSquares": ["c5","d6","e5"]
+      }
+    },
+  
+    "KID Type 3": {
+      "colorFlip": false,
+      "white": {
+        "requiredSquares": ["c4","d5","e4"]
+      },
+      "black": {
+        "requiredSquares": ["c7","d6","e5"],
+        "forbiddenSquares": ["c5"]
+      }
+    },
+  
+    "Open KID": {
+      "colorFlip": false,
+      "white": {
+        "requiredSquares": ["c4","e4"],
+        "forbiddenRegions": [
+          { "files": ["d"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
+      },
+      "black": {
+        "requiredSquares": ["d6"],
+        "forbiddenRegions": [
+          { "files": ["e"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
+      }
+    },
+  
+    "KID Complex Center": {
+      "colorFlip": false,
+      "white": {
+        "requiredSquares": ["c4","d4","e4"]
+      },
+      "black": {
+        "requiredSquares": ["c6","d6","e5"]
+      }
+    },
+  
+    "KID Exchange Center": {
+      "colorFlip": false,
+      "white": {
+        "requiredSquares": ["c4","e4"],
+        "forbiddenRegions": [
+          { "files": ["d"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
+      },
+      "black": {
+        "requiredSquares": ["c6","e5"],
+        "forbiddenRegions": [
+          { "files": ["d"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
+      }
+    },
+  
+    "French Type 1": {
+      "colorFlip": true,
+      "white": {
+        "requiredSquares": ["d4"],
+        "forbiddenRegions": [
+          { "files": ["e"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
+      },
+      "black": {
+        "requiredSquares": ["d5","e6"],
+        "forbiddenRegions": [
+          { "files": ["f"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
+      }
+    },
+  
+    "French Type 2": {
+      "colorFlip": true,
+      "white": {
+        "requiredSquares": ["e5"],
+        "forbiddenRegions": [
+          { "files": ["d"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
+      },
+      "black": {
+        "requiredSquares": ["d5","e6"]
+      }
+    },
+  
+    "French Type 3": {
+      "colorFlip": true,
+      "white": {
+        "requiredSquares": ["d4","e5"]
+      },
+      "black": {
+        "requiredSquares": ["d5","e6","f7"]
+      }
+    },
+  
+    "3-3 vs 4-2": {
+      "colorFlip": true,
+      "white": {
+        "requiredSquares": ["a2","b2","c2","f2","g2","h2"]
+      },
+      "black": {
+        "requiredSquares": ["a7","b7","e7","f7","g7","h7"]
+      }
+    }
+  }
+  
+  

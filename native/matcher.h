@@ -1,14 +1,11 @@
 #pragma once
-#include <string>
 #include <vector>
 #include <stdint.h>
 
-struct RegionConstraint {
+struct ZoneConstraint {
     uint64_t mask;
-    std::string whiteOp;
-    int whiteValue;
-    std::string blackOp;
-    int blackValue;
+    int min;
+    int max;
 };
 
 struct CompiledStructure {
@@ -16,7 +13,8 @@ struct CompiledStructure {
     uint64_t whiteForbidden;
     uint64_t blackRequired;
     uint64_t blackForbidden;
-    std::vector<RegionConstraint> regions;
+    std::vector<ZoneConstraint> whiteRegions;
+    std::vector<ZoneConstraint> blackRegions;
 };
 
 bool matchStructure(

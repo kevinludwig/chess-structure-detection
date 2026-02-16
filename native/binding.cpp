@@ -1,27 +1,23 @@
 #include <napi.h>
 #include "matcher.h"
 
-// Convert a JS CompiledRegion object → C++ RegionConstraint
-static RegionConstraint regionFromJS(const Napi::Object& obj) {
-    RegionConstraint r;
-
+static ZoneConstraint zoneFromJS(const Napi::Object& obj) {
+    ZoneConstraint z;
     bool lossless;
-    r.mask = obj.Get("mask").As<Napi::BigInt>().Uint64Value(&lossless);
-
-    if (obj.Has("whiteOp")) {
-        r.whiteOp = obj.Get("whiteOp").As<Napi::String>().Utf8Value();
-        r.whiteValue = obj.Get("whiteValue").As<Napi::Number>().Int32Value();
-    }
-
-    if (obj.Has("blackOp")) {
-        r.blackOp = obj.Get("blackOp").As<Napi::String>().Utf8Value();
-        r.blackValue = obj.Get("blackValue").As<Napi::Number>().Int32Value();
-    }
-
-    return r;
+    z.mask = obj.Get("mask").As<Napi::BigInt>().Uint64Value(&lossless);
+    z.min = obj.Get("min").As<Napi::Number>().Int32Value();
+    z.max = obj.Get("max").As<Napi::Number>().Int32Value();
+    return z;
 }
 
-// Convert a JS CompiledStructure → C++ CompiledStructure
+static void regionsFromJS(const Napi::Array& arr, std::vector<ZoneConstraint>& out) {
+    const uint32_t len = arr.Length();
+    out.reserve(len);
+    for (uint32_t i = 0; i < len; i++) {
+        out.push_back(zoneFromJS(arr.Get(i).As<Napi::Object>()));
+    }
+}
+
 static CompiledStructure structureFromJS(const Napi::Object& obj) {
     CompiledStructure s;
 
@@ -31,19 +27,12 @@ static CompiledStructure structureFromJS(const Napi::Object& obj) {
     s.blackRequired  = obj.Get("blackRequired").As<Napi::BigInt>().Uint64Value(&lossless);
     s.blackForbidden = obj.Get("blackForbidden").As<Napi::BigInt>().Uint64Value(&lossless);
 
-    Napi::Array regions = obj.Get("regions").As<Napi::Array>();
-    const uint32_t len = regions.Length();
-
-    s.regions.reserve(len);
-    for (uint32_t i = 0; i < len; i++) {
-        Napi::Object rObj = regions.Get(i).As<Napi::Object>();
-        s.regions.push_back(regionFromJS(rObj));
-    }
+    regionsFromJS(obj.Get("whiteRegions").As<Napi::Array>(), s.whiteRegions);
+    regionsFromJS(obj.Get("blackRegions").As<Napi::Array>(), s.blackRegions);
 
     return s;
 }
 
-// JS wrapper: detectStructure(whitePawns, blackPawns, compiledStructure)
 Napi::Value DetectStructure(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
 
@@ -63,7 +52,6 @@ Napi::Value DetectStructure(const Napi::CallbackInfo& info) {
     return Napi::Boolean::New(env, result);
 }
 
-// Module initialization
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
     exports.Set(
         Napi::String::New(env, "detectStructure"),
