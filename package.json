@@ -1,0 +1,21 @@
+{
+  "name": "chess-structure-detection",
+  "version": "1.0.0",
+  "description": "Detect chess pawn structures and attributes given a bitboard representation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "build": "node-gyp configure build",
+    "rebuild": "node-gyp rebuild",
+    "clean": "node-gyp clean"
+  },
+  "keywords": ["chess", "bitboard", "pawn-structure"],
+  "dependencies": {
+    "bitboard-chess": "^0.3.0"
+  },
+  "devDependencies": {
+    "node-addon-api": "^8.0.0"
+  },
+  "author": "",
+  "license": "MIT"
+}
