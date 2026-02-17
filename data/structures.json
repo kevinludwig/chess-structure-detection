@@ -128,12 +128,15 @@
     "Najdorf Type 1": {
       "colorFlip": false,
       "white": {
-        "requiredSquares": ["a2","b2","c2","d5","f2","g2","h2"]
+        "requiredSquares": ["d5"],
+        "forbiddenRegions": [
+          { "files": ["e"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
       },
       "black": {
-        "requiredSquares": ["a7","b7","d6","e5","f7","g7","h7"],
+        "requiredSquares": ["d6","e5"],
         "forbiddenRegions": [
-          { "files": ["c"], "ranks": [5,6,7], "min": 0, "max": 0 }
+          { "files": ["c"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
         ]
       }
     },
