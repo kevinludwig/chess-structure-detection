@@ -157,13 +157,22 @@
     "Hedgehog": {
       "colorFlip": false,
       "white": {
-        "requiredSquares": ["c4","d4","e4"]
+        "requiredSquares": ["c4","e4"],
+        "forbiddenRegions": [
+          { "files": ["d"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
       },
       "black": {
-        "requiredSquares": ["a6","b6","c5","d6","e6"]
+        "requiredSquares": ["b6","d6","e6"],
+        "requiredRegions": [
+          { "files": ["a"], "ranks": [6, 7], "min": 1, "max": 1 }
+        ],
+        "forbiddenRegions": [
+          { "files": ["c"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
       }
     },
-  
+
     "Asymmetric Benoni": {
       "colorFlip": false,
       "white": {
