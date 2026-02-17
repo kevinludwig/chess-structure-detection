@@ -176,11 +176,19 @@
     "Asymmetric Benoni": {
       "colorFlip": false,
       "white": {
-        "requiredSquares": ["d5","e4"],
-        "forbiddenSquares": ["c4"]
+        "requiredSquares": ["d5"],
+        "requiredRegions": [
+          { "files": ["e"], "ranks": [2, 3, 4], "min": 1, "max": 1 }
+        ],
+        "forbiddenRegions": [
+          { "files": ["c"], "ranks": [2, 3, 4, 5, 6, 7], "min": 0, "max": 0 }
+        ]
       },
       "black": {
-        "requiredSquares": ["c5","d6"]
+        "requiredSquares": ["c5", "d6"],
+        "forbiddenRegions": [
+          { "files": ["e"], "ranks": [2, 3, 4, 5, 6, 7], "min": 0, "max": 0 }
+        ]
       }
     },
   
