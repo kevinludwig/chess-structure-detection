@@ -29,6 +29,12 @@ When adding or editing tests for pawn structures in `test/`:
 - Move sequences are an array of SAN moves in game order (e.g. `['d4', 'f5', 'g3', 'Nf6', ...]`).
 - One test file per structure; add one or more `it(...)` tests per move sequence the user provides.
 
+## Test naming (opening label)
+
+When the move sequence corresponds to a known opening, **name the test after that opening** so the structure and opening are both clear. Use the pattern: **"[Opening name] reaches [Structure] after ..."** (or "... does not reach [Structure] ..." for negative tests).
+
+Examples: `Queen's Gambit Accepted reaches IQP after ...`, `Dutch Defense reaches Stonewall (black) after ...`, `Sicilian Accelerated Dragon reaches Maroczy Bind after ...`. If the opening is ambiguous, a short move summary is fine (e.g. `1. d4 Nf6 2. c4 g6 ... reaches Maroczy Bind after ...`).
+
 ## Example (positive)
 
 ```js

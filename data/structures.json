@@ -45,22 +45,34 @@
       "white": {
         "requiredSquares": ["c4","e4"]
       },
-      "black": {
-        "requiredSquares": ["d6"],
-        "forbiddenSquares": ["c5"]
+"black": {
+        "requiredRegions": [
+          { "files": ["d"], "ranks": [7, 6], "min": 1, "max": 1 },
+          { "files": ["e"], "ranks": [7, 6], "min": 1, "max": 1 }
+        ],
+        "forbiddenSquares": ["c5", "d5", "d4", "d3", "d2", "e5", "e4", "e3", "e2"]
       }
     },
-  
+
     "Slav Formation": {
       "colorFlip": true,
       "white": {
         "requiredSquares": ["d4"],
+        "requiredRegions": [
+          { "files": ["e"], "ranks": [2, 3], "min": 1, "max": 1 }
+        ],
         "forbiddenRegions": [
           { "files": ["c"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
         ]
       },
       "black": {
-        "requiredSquares": ["d5","c6"]
+        "requiredSquares": ["c6"],
+        "requiredRegions": [
+          { "files": ["e"], "ranks": [6, 7], "min": 1, "max": 1 }
+        ],
+        "forbiddenRegions": [
+          { "files": ["d"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
       }
     },
   
