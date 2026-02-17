@@ -97,13 +97,16 @@
     "Carlsbad": {
       "colorFlip": true,
       "white": {
-        "requiredSquares": ["c4","d4"],
+        "requiredSquares": ["d4","e3"],
         "forbiddenRegions": [
-          { "files": ["e"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+          { "files": ["c"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
         ]
       },
       "black": {
-        "requiredSquares": ["d5","c6"]
+        "requiredSquares": ["d5","c6"],
+        "forbiddenRegions": [
+          { "files": ["e"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
       }
     },
   
