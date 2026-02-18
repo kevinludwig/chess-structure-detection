@@ -323,10 +323,62 @@
     "3-3 vs 4-2": {
       "colorFlip": true,
       "white": {
-        "requiredSquares": ["a2","b2","c2","f2","g2","h2"]
+        "requiredRegions": [
+          { "files": ["a"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["b"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["c"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["f"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["g"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["h"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 }
+        ],
+        "forbiddenRegions": [
+          { "files": ["d"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 },
+          { "files": ["e"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
       },
       "black": {
-        "requiredSquares": ["a7","b7","e7","f7","g7","h7"]
+        "requiredRegions": [
+          { "files": ["a"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["b"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["e"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["f"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["g"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["h"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 }
+        ],
+        "forbiddenRegions": [
+          { "files": ["c"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 },
+          { "files": ["d"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
+      }
+    }, 
+    "Panov": {
+      "colorFlip": true,
+      "white": {
+        "requiredSquares": ["d4", "c5"],
+        "requiredRegions": [
+          { "files": ["a"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["b"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["f"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["g"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["h"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 }
+        ],
+        "forbiddenRegions": [
+          { "files": ["e"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
+      },
+      "black": {
+        "requiredSquares": ["d5"],
+        "requiredRegions": [
+          { "files": ["a"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["b"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["e"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["f"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["g"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 },
+          { "files": ["h"], "ranks": [2,3,4,5,6,7], "min": 1, "max": 1 }
+        ],
+        "forbiddenRegions": [
+          { "files": ["c"], "ranks": [2,3,4,5,6,7], "min": 0, "max": 0 }
+        ]
       }
     }
   }
